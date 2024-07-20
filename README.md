@@ -1,4 +1,5 @@
-# Thesis
+# Electrostatics and magnetostatics on the Hypersphere
+
 Materials and code that I use for my bachelor thesis - electrostatics and magnetostatics on a hypersphere
 
 Scripts that are in a folder called "scripts" ( :) ) are unfortunately not well documented (sometimes not at all).
