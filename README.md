@@ -72,9 +72,9 @@ $$
         \end{array}
 $$
 
-### Visualisation of functions on the hypersphere
+### Visualisation of functions on the hypersphere - finally some code!
 
-Now we can visualise 
+Now we can visualise the functions on the hypersphere $f(\varphi, \vartheta, \zeta)$ with the use of the stereografic projection. How? Let us have the funciton f(\varphi, \vartheta, \zeta)$ (notice that the arguments of the funciton are the hyprepsherical angles) and with the use of $\alpha^{-1}$ let map the  
 
 
 
