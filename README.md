@@ -1,6 +1,6 @@
 # Electrostatics and magnetostatics on the hypersphere
 
-While studying at Masaryk University in Brno, I wrote my bachelor thesis - Electrostatics and magnetostatics on the hypersphere. The title says it all. My task was to solve scalar and vector Poisson equations for electrostatic and magnetostatic potentials. I managed to find a solution for the electrostatic potential. Still, unfortunately, the magnetostatic (vector) potential was too much of a task and would require extra time, which I did not have at the time. I managed to defend my thesis with the grade A in June of 2024. If you are interested in the Thesis, you can download it [here](/electrostatics_and_magnetostatics_on_the_hypersphere_valentik.pdf).
+While studying at Masaryk University in Brno, I wrote my bachelor thesis - Electrostatics and magnetostatics on the hypersphere. The title says it all. My task was to solve scalar and vector Poisson equations for electrostatic and magnetostatic potentials. I managed to find a solution for the electrostatic potential. Still, unfortunately, the magnetostatic (vector) potential was too much of a task and would require extra time, which I did not have at the time. I managed to defend my thesis with the grade A in June of 2024. If you are interested in the Thesis, you can download it [here](https://is.muni.cz/th/z48op/?lang=en) or [here](/electrostatics_and_magnetostatics_on_the_hypersphere_valentik.pdf).
 
 I wrote some code for my bachelor thesis which I share here for anyone interested.
 
@@ -64,7 +64,7 @@ $$
 where $\mathbf{p} = (x_1, x_2, x_3, x_4)$ represents a point on the hypersphere (and therefore it must be true that $\sqrt{x_1^2 + x_2^2 + x_3^2 + x_4^2} = 1$) and $\mu$, $\nu$ and $\xi$ are the new coordinates of $\mathbf{p}$ on $\mathbb{R}^3$. Inverse stereographic projection $\beta^{-1}$ will prove to be useful so let me write it down here
 
 $$
-\beta{-1}: \qquad \begin{array}{l}
+\beta^{-1}: \qquad \begin{array}{l}
         x' = \frac{2\mu}{\mu^2+\nu^2+\xi^2+1}, \\
         y' = \frac{2\nu}{\mu^2+\nu^2+\xi^2+1}, \\
         z' = \frac{2\xi}{\mu^2+\nu^2+\xi^2+1}, \\
@@ -74,7 +74,11 @@ $$
 
 ### Visualisation of functions on the hypersphere - finally some code!
 
-Now we can visualise the functions on the hypersphere $f(\varphi, \vartheta, \zeta)$ with the use of the stereografic projection. How? Let us have the funciton f(\varphi, \vartheta, \zeta)$ (notice that the arguments of the funciton are the hyprepsherical angles) and with the use of $\alpha^{-1}$ let map the  
+Now we can visualise the functions on the hypersphere $f(\varphi, \vartheta, \zeta)$ with the use of the stereografic projection. How? Let us start with the grid of $N^3$ points in the closed subspace  $M = \\{p = (x_1, x_2, x_3) \vert x_1 \in (-2,2), x_2 \in (-2,2), x_3 \in (-2,2)\\}$ of $\mathbb{R}^3$.
+
+
+
+Let us have the funciton $f(\varphi, \vartheta, \zeta)$ (notice that the arguments of the funciton are the hyprepsherical angles). With the use of the map $\alpha^{-1}$ transform the function $f(\varphi, \vartheta, \zeta)$ with the   
 
 
 
