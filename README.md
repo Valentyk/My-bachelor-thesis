@@ -131,11 +131,9 @@ func_values_g = np.real(func_g(zeta_g,theta_g,phi_g))    # Evaluation of the fun
     fig.show()
 ```
 
-In my thesis I chose the function $f = \cos\varphi \cos\vartheta \cos\zeta$ as an example of the visualization and the output image of my script looks like this
-<img src="https://github.com/user-attachments/assets/d151408b-4107-434d-a6af-36673b11841e" width="300" align="right">
+In my thesis I chose the function $f = \cos\varphi \cos\vartheta \cos\zeta$ as an example of the visualization and the output image of my script is below
 
-
-Let us have the function $f(\varphi, \vartheta, \zeta)$ (notice that the function's arguments are the hyperspherical angles). With the use of the map $\alpha^{-1}$ transform the function $f(\varphi, \vartheta, \zeta)$ with the   
+<img src="https://github.com/user-attachments/assets/d151408b-4107-434d-a6af-36673b11841e">
 
 
 
