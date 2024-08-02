@@ -25,7 +25,7 @@ $$
         \end{array}
 $$
 
-where $\varphi \in (0,\pi)$, $\vartheta \in (0,\pi)$ and $\zeta \in (0,2\pi)$ are the new coordinates - angles - of the hypersphere ($\zeta$ is an anlogoue to azimuthal angle in spherical coordinates). We can derive the inverse map $\alpha^{-1}$
+where $\varphi \in (0,\pi)$, $\vartheta \in (0,\pi)$ and $\zeta \in (0,2\pi)$ are the new coordinates - angles - of the hypersphere ($\zeta$ is analogous to azimuthal angle in spherical coordinates). We can derive the inverse map $\alpha^{-1}$
 
 $$
 \alpha^{-1}: \qquad \begin{array}{l}
@@ -49,9 +49,9 @@ $$
 
 which will be useful later :).
 
-### Stereographic projeciton
+### Stereographic projection
 
-For the human mind, the hypersphere $\mathbb{S}^3$ is not an easy object to imagine. Fortunately we can map the hypersphere $\mathbb{S}^3$ onto the $\mathbb{R}^3$ by stereographic map (more on stereographic projection [here](https://en.wikipedia.org/wiki/Stereographic_projection)) $\beta$
+For the human mind, the hypersphere $\mathbb{S}^3$ is not easily imaginable. Fortunately we can map the hypersphere $\mathbb{S}^3$ onto the $\mathbb{R}^3$ by stereographic map (more on stereographic projection [here](https://en.wikipedia.org/wiki/Stereographic_projection)) $\beta$
 
 $$
 \beta: \qquad \begin{array}{l}
@@ -74,11 +74,68 @@ $$
 
 ### Visualisation of functions on the hypersphere - finally some code!
 
-Now we can visualise the functions on the hypersphere $f(\varphi, \vartheta, \zeta)$ with the use of the stereografic projection. How? Let us start with the grid of $N^3$ points in the closed subspace  $M = \\{p = (x_1, x_2, x_3) \vert x_1 \in (-2,2), x_2 \in (-2,2), x_3 \in (-2,2)\\}$ of $\mathbb{R}^3$.
+Now we can visualize the functions on the hypersphere $f(\varphi, \vartheta, \zeta)$ using the stereographic projection. How? Let us start with the grid of $N^3$ (we will call $N$ the 'grid number') points in the closed subspace $M = \\{p = (x_1, x_2, x_3) \vert x_1 \in [-2,2], x_2 \in [-2,2], x_3 \in [-2,2]\\}$ of $\mathbb{R}^3$. In the code, this process looks like this
+
+```python 
+N_fig = 120                                              # Grid number defines the "resolution" of the Figures
+
+x_values = np.linspace(-2,2,N_fig)                       # Defiing the grid for the plotting
+y_values = np.linspace(-2,2,N_fig)
+z_values = np.linspace(-2,2,N_fig)
+x,y,z = np.meshgrid(x_values, y_values, z_values)                               
+```
+
+Then, using the inverse map $\beta^{-1}$ (inverse stereographic projection), we will express each point of the grid in $R^4$. Finally, we can use the inverse hyperspherical map $\alpha^{-1}$, we will end up with the hyperspherical coordinates of each point of the grid (from our subspace $M$) into which we want to project the function $f(\varphi, \vartheta, \zeta)$. These inverse maps are defined in the code by the functions `R3_R4` and `R4_S3` like this
+
+``` python
+def R3_R4(x_values, y_values, z_values):                 # Inverse stereographic projection
+    X = (2*x_values)/(x_values**2+y_values**2+z_values**2+1) 
+    Y = (2*y_values)/(x_values**2+y_values**2+z_values**2+1) 
+    Z = (2*z_values)/(x_values**2+y_values**2+z_values**2+1) 
+    W = (x_values**2+y_values**2+z_values**2-1)/(x_values**2+y_values**2+z_values**2+1) 
+    return(X,Y,Z,W)
+
+def R4_S3(X,Y,Z,W):                                      # Inverse hyperspherical map
+    zeta = np.arctan2(W,Z)
+    theta = np.arctan2(np.sqrt(Z**2+W**2),Y)
+    phi = np.arctan2(np.sqrt(W**2+Z**2+Y**2),X)
+    return(phi, theta, zeta)
+```
+
+To confuse the reader - the code denotes the coordinates in $\mathbb{R}^4$ as `X`, `Y`, `Z`, `W` and in $\mathbb{R}^3$ as `x_values`, `y_values`, `z_values` instead of $x_1$, $x_2$, $x_3$, $x_4$ or $\mu$, $\nu$, $\xi$ respectively.
+
+Now, we can assign the hyperspherical coordinate to each point of the grid in the subspace $M$ of $\mathbb{R}^3$ and that means that we are also able to assign the function value of the function $f(\varphi, \vartheta, \zeta)$. The hard part is over... uff...
+
+Now the only thing that remains to do is to plot the function. I decided to use the isosurfaces (surfaces with constant function value) to be plotted and used [Plotly](https://plotly.com/python/) graphing library to plot the figure of the isosurfaces of the function.
+```python
+func_values_g = np.real(func_g(zeta_g,theta_g,phi_g))    # Evaluation of the func_g for each point of the plot grid 
+
+    fig = go.Figure(layout=layout, data = go.Volume(     # Making the plot
+        x=x.flatten(),
+        y=y.flatten(),
+        z=z.flatten(),
+        value = func_values_g.flatten(),
+        isomin = np.min(func_values_g),
+        isomax = np.max(func_values_g),
+        # isomin = -1,
+        # isomax = 1,
+        surface_count = 10,
+        opacity = 0.5,
+        #surface_fill = 0.9,
+        colorscale = "plasma",
+        caps = dict(x_show = False, y_show = False, z_show = False)
+    ))
+
+    fig.update_layout(scene_camera=camera)
+
+    fig.show()
+```
+
+In my thesis I chose the function $f = \cos\varphi \cos\vartheta \cos\zeta$ as an example of the visualization and the output image of my script looks like this
+<img src="https://github.com/user-attachments/assets/d151408b-4107-434d-a6af-36673b11841e" width="300" align="right">
 
 
-
-Let us have the funciton $f(\varphi, \vartheta, \zeta)$ (notice that the arguments of the funciton are the hyprepsherical angles). With the use of the map $\alpha^{-1}$ transform the function $f(\varphi, \vartheta, \zeta)$ with the   
+Let us have the function $f(\varphi, \vartheta, \zeta)$ (notice that the function's arguments are the hyperspherical angles). With the use of the map $\alpha^{-1}$ transform the function $f(\varphi, \vartheta, \zeta)$ with the   
 
 
 
