@@ -266,7 +266,7 @@ The script then multiplies this component by $\frac{1}{\epsilon_0 (n+2)n} H_{nlm
 
 
 
-## Junk, don't mind this part :)
+<!-- ## Junk, don't mind this part :)
 
 Materials and code that I use for my bachelor thesis - electrostatics and magnetostatics on a hypersphere
 
@@ -281,3 +281,4 @@ I also have scripts that allow me to visualize the functions on the hypersphere.
 The function shown is the function of $\zeta$ where $\zeta$ is one of the hyperspehrical coordinates ($\phi$, $\theta$, $\zeta$).
 
 The plot in the picture carries some kind of visible numerical artifacts, especially in the yellow parts of the plot. If I have enough time for my thesis I will try to get rid of them.
+-->
