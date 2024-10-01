@@ -134,12 +134,11 @@ func_values_g = np.real(func_g(zeta_g,theta_g,phi_g))    # Evaluation of the fun
 I selected a few simple functions as examples to show the output image. You may see them below.
 |||
 |:-------------------------:|:-------------------------:|
-|<img width="1604" alt="f=phi" src="https://github.com/user-attachments/assets/1db199cc-017b-4c89-adae-a37611c61333">  $f(\varphi, \vartheta, \zeta) = \varphi$ |<img width="1604" alt="f=theta" src="https://github.com/user-attachments/assets/c9c8aba7-bfb6-4d40-ab37-ffcf847c7e9a"> $f(\varphi, \vartheta, \zeta) = \vartheta$ |
+|<img width="1604" alt="f=phi" src="https://github.com/user-attachments/assets/1db199cc-017b-4c89-adae-a37611c61333"> $f(\varphi, \vartheta, \zeta) = \varphi$ |<img width="1604" alt="f=theta" src="https://github.com/user-attachments/assets/c9c8aba7-bfb6-4d40-ab37-ffcf847c7e9a"> $f(\varphi, \vartheta, \zeta) = \vartheta$ |
 |<img width="1604" alt="f=zeta" src="https://github.com/user-attachments/assets/70daa0ea-9650-4a71-97aa-052b491fd26a"> $f(\varphi, \vartheta, \zeta) = \zeta$ |<img width="1604" alt="f=cos(phi)cos(theta)cos(zeta)" src="https://github.com/user-attachments/assets/d151408b-4107-434d-a6af-36673b11841e"> $f = \cos\varphi \cos\vartheta \cos\zeta$ |
 
-## Electrostatics
 
-### Poisson equation
+## Poisson equation
 
 As I said in the beginning, I managed to only solve electrostatic part of the problem but I generalized both electrostatic and magnetostatic Poisson equations to the hypersphere $\mathbb{S}^3$. For this generalization I used the *language* of the differential forms. For more details on how did I make this generalization have a look at my thesis.
 
@@ -152,7 +151,7 @@ $$
 The classic Poisson equation for the eletrostatic potential $\phi$ in our flat space $\mathbb{R}^3$ is 
 
 $$
-            \Delta \phi = \frac{\rho}{\epsilon_0},
+            \Delta \phi = -\frac{\rho}{\epsilon_0},
 $$
 
 where $\rho$ is the charge density and $\epsilon_0$ is the vacuum permittivity constant. Because I was able to generalize the Laplace operator $\Delta$ to the hypersphere $\mathbb{S}^3$ I can write the Poisson equation on the hypersphere as 
@@ -175,13 +174,68 @@ $$
             \Delta H_{nlm} = -(n+2)n H_{nlm}.
 $$
 
-You may be how does the hyperspherical harmonic function $H_{nlm}$ looks like. In my thesis I derived the formula for $H_{nlm}$ which looks like this
+You may be interested in how does the hyperspherical harmonic function $H_{nlm}$ look like. In my thesis I derived the formula for $H_{nlm}$
 
 $$
-            H_{nlm} = \sqrt{\frac{(2l+1)(n+1)(l-m)!(n-l)!}{2\pi^2(l+m)!(n+l+1)!}} C_{n}^{1,l}(\cos\varphi) C_{l}^{1/2,m}(\cos\vartheta) e^{im\zeta}
+            H_{nlm} = \sqrt{\frac{(2l+1)(n+1)(l-m)!(n-l)!}{2\pi^2(l+m)!(n+l+1)!}} C_{n}^{1,l}(\cos\varphi) C_{l}^{1/2,m}(\cos\vartheta) e^{im\zeta},
 $$
 
-where $C_n^{\alpha,n} are associated Gegenbauer polynomials which are disccused in the appendix of my thesis. 
+where $C_n^{\alpha,n} are associated Gegenbauer polynomials which are disccused in the appendix B of my thesis. The constant in the front is normalization consstant which ensures that the hyperspherical harmonic function is normalized with respect to the inner product (integral over the hypersphere)
+
+$$
+            \left< f, g \right> = \int_0^\pi \sin^2\varphi \text{d}\varphi \int_0^\pi \sin\vartheta \text{d}\vartheta \int_0^{2\pi} \bar{f}g \text{d}\zeta,        
+$$
+
+where $\bar{f}$ is complex conjugate of the function $f$.
+
+## Solutions!
+
+Now that I have the eigenfunctions of the Laplace operator we can finally solve some problems! How? Lets assume that we know the chrage density function $\rho(\varphi, \vartheta, \zeta)$. That is enough to solve our Poisson equaiton
+
+$$
+            \Delta \phi = -\frac{\rho}{\epsilon_0}.
+$$
+
+So why did we bother with finding the eigenfunctions of the Laplace operator? If the results of the Sturm--Liouville theory are applied on our set of eigenfunctions $H_{nlm}$ it can be shown that the hyperspherical harmonics $H_{nlm}$ form an orthonormal basis on the space of square-itegrable functions (on the hypersphere $\mathbb{S}^3$ of course) with respect to the innerproduct of two functions mentioned above. This means that we can express any (square-integrable) function $f$ on $\mathbb{S}^3$ as the generalized Fourier series
+
+$$
+            f(\varphi, \vartheta, \zeta) = \sum_{nlm} c_{nlm}H_{nlm},
+$$
+
+where $c_{nlm}$ are the Fourier coefficients gyven by the relation
+
+$$
+            c_{nlm} = \left< H_{nlm}, f \right>.
+$$
+
+We can apply the results of the  on our problem.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Junk, don't mind this part :)
 
