@@ -252,14 +252,11 @@ The script then multiplies this component by $\frac{1}{\epsilon_0 (n+2)n} H_{nlm
 
 | Analytic charge density $\rho$ | Charge density | Electrostatic potential |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|$\rho_1 = 30 A \sin{\vartheta}\cos{\zeta}-A \left(\varphi-\frac{\pi}{2}\right)^3$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a">|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a">|
-|$\rho_2 = A \left(\varphi - \frac{\pi}{2} + \sin2\vartheta\right), \qquad [A] = \text{ Cm}^{-3}$|||
-|$\rho_3 = A \left( \cos{\varphi}+2\cos{\vartheta} \right) \sin{2\varphi} \sin{\zeta}, \qquad [A] = \text{ Cm}^{-3}$|||
+|$\rho_1 = 30 A \sin{\vartheta}\cos{\zeta}-A \left(\varphi-\frac{\pi}{2}\right)^3$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
+|$\rho_2 = A \left(\varphi - \frac{\pi}{2} + \sin2\vartheta\right), \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
+|$\rho_3 = A \left( \cos{\varphi}+2\cos{\vartheta} \right) \sin{2\varphi} \sin{\zeta}, \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
 
 
-
-![fig_aprox](https://github.com/user-attachments/assets/89b9eb8f-1622-4ad5-a679-55a38853c2c2)
-![fig_orig](https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a)
 
 
 
