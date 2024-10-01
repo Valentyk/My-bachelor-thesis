@@ -151,13 +151,13 @@ $$
 The classic Poisson equation for the eletrostatic potential $\phi$ in our flat space $\mathbb{R}^3$ is 
 
 $$
-            \Delta \phi = -\frac{\rho}{\epsilon_0},
+            \Delta \phi = -\frac{\rho}{\varepsilon_0},
 $$
 
-where $\rho$ is the charge density and $\epsilon_0$ is the vacuum permittivity constant. Because I was able to generalize the Laplace operator $\Delta$ to the hypersphere $\mathbb{S}^3$ I can write the Poisson equation on the hypersphere as 
+where $\rho$ is the charge density and $\varepsilon_0$ is the vacuum permittivity constant. Because I was able to generalize the Laplace operator $\Delta$ to the hypersphere $\mathbb{S}^3$ I can write the Poisson equation on the hypersphere as 
 
 $$
-            \Delta_{\mathbb{S}^3} \phi(\varphi, \vartheta, \zeta) = \frac{\rho(\varphi, \vartheta, \zeta)}{\epsilon_0}.
+            \Delta_{\mathbb{S}^3} \phi(\varphi, \vartheta, \zeta) = \frac{\rho(\varphi, \vartheta, \zeta)}{\varepsilon_0}.
 $$
  
 From now on I will omit the index in $Delta_{\mathbb{S}^3}$ and the function variables $\varphi, \vartheta, \zeta$.
@@ -193,7 +193,7 @@ where $\bar{f}$ is complex conjugate of the function $f$.
 Now that I have the eigenfunctions of the Laplace operator we can finally solve some problems! How? Lets assume that we know the chrage density function $\rho(\varphi, \vartheta, \zeta)$. That is enough to solve our Poisson equaiton
 
 $$
-            \Delta \phi = -\frac{\rho}{\epsilon_0}.
+            \Delta \phi = -\frac{\rho}{\varepsilon_0}.
 $$
 
 So why did we bother with finding the eigenfunctions of the Laplace operator? If the results of the Sturm--Liouville theory are applied on our set of eigenfunctions $H_{nlm}$ it can be shown that the hyperspherical harmonics $H_{nlm}$ form an orthonormal basis on the space of square-itegrable functions (on the hypersphere $\mathbb{S}^3$ of course) with respect to the innerproduct of two functions mentioned above. This means that we can express any (square-integrable) function $f$ on $\mathbb{S}^3$ as the generalized Fourier series
@@ -208,17 +208,58 @@ $$
             c_{nlm} = \left< H_{nlm}, f \right>.
 $$
 
-We can apply the results of the  on our problem.  
+Now we will use the important property of the Laplace operator - is is self-adjoint operator.
+
+$$
+            \left< \delta f, g \right> = \left< f, \delta g \right>.
+$$
+
+Now we have all the instruments we need to express our electrostatic potential $\phi$ as the Fourier series with $H_{nlm}$ as a basis. How? Lets have a look at this series of functions
+
+$$
+\begin{gathered}
+            \left< H_{nlm}, \Delta \phi \right> = \left< \Delta H_{nlm} , \phi \right> = \left< H_{nlm} , -\frac{\rho}{\varepsilon_0} \right>, \\
+            \left< \Delta H_{nlm} , \phi \right> = -(n+2)n \left< H_{nlm}, \phi \right> = \left< H_{nlm} , -\frac{\rho}{\varepsilon_0} \right>. \\
+            \left< H_{nlm} , \phi \right> = \frac{1}{(n+2)n} \left< H_{nlm} , \phi \right>
+\end{gathered}
+$$
+
+These equations follow from the things that have been said earlier. How would the Fourier series of the electrostatic function $\phi$ look like? Like this
+
+$$
+            \phi(\varphi, \vartheta, \zeta) = \sum_{nlm} \left< H_{nlm} , \phi \right> H_{nlm},
+$$
+
+and if we look closely we can see, that we expressed the coefficients $\left< H_{nlm}, \phi \right>$ in the previous equaitons! And just like that we have a solution to our problem - Poisson equation with known charge density function
+
+$$
+            \phi(\varphi, \vartheta, \zeta) = \sum_{nlm} \frac{1}{\varepsilon_0 (n+2)n} \left< H_{nlm} , \rho \right> H_{nlm}.
+$$
+
+## Pictures of the solutions
+
+Becuase I cannot sum all of the terms in the infinite series in my solutions I ommited the terms with $n > 7$ (this number was selected as good enough. I know, not very rigourous...) si the series becomes finite. Now we can visualise the solution (or rather its approximation) using our script! But first we need to compute the Fouerier components of the generalized Fouerier series $\left< H_{nlm}, \rho \right> which is the hardest part to compute. I have done that using the following part of the script. 
+
+```python
+def components_simps(n,l,m):                                        # Calculation of the Fourier coefficient for the input function
+    function_values = np.conjugate(eigen_func(zeta,theta,phi,n,l,m))*func_g(zeta,theta,phi)
+    jacobian = (np.sin(phi))**2*np.sin(theta)
+    result = simpson(simpson(simpson(function_values*jacobian,zeta_values, axis = 2), theta_values, axis = 1),phi_values, axis = 0)
+    return(result)
+```
+
+The script then multiplies this component by $\frac{1}{\epsilon_0 (n+2)n} H_{nlm}$ and we have one term of the (now) finite series! After we sum up all of the terms we have the solution which we can now visualize using the stereographic projeciton. In the table belov we can see the charge density functions and the solution. 
+
+| Analytic charge density $\rho$ | Charge density | Electrostatic potential |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|$\rho_1 = 30 A \sin{\vartheta}\cos{\zeta}-A \left(\varphi-\frac{\pi}{2}\right)^3$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a">|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a">|
+|$\rho_2 = A \left(\varphi - \frac{\pi}{2} + \sin2\vartheta\right), \qquad [A] = \text{ Cm}^{-3}$|||
+|$\rho_3 = A \left( \cos{\varphi}+2\cos{\vartheta} \right) \sin{2\varphi} \sin{\zeta}, \qquad [A] = \text{ Cm}^{-3}$|||
 
 
 
-
-
-
-
-
-
-
+![fig_aprox](https://github.com/user-attachments/assets/89b9eb8f-1622-4ad5-a679-55a38853c2c2)
+![fig_orig](https://github.com/user-attachments/assets/e4e7b7d9-f49e-41ec-b635-a8af84a9b45a)
 
 
 
