@@ -137,8 +137,51 @@ I selected a few simple functions as examples to show the output image. You may 
 |<img width="1604" alt="f=phi" src="https://github.com/user-attachments/assets/1db199cc-017b-4c89-adae-a37611c61333">  $f(\varphi, \vartheta, \zeta) = \varphi$ |<img width="1604" alt="f=theta" src="https://github.com/user-attachments/assets/c9c8aba7-bfb6-4d40-ab37-ffcf847c7e9a"> $f(\varphi, \vartheta, \zeta) = \vartheta$ |
 |<img width="1604" alt="f=zeta" src="https://github.com/user-attachments/assets/70daa0ea-9650-4a71-97aa-052b491fd26a"> $f(\varphi, \vartheta, \zeta) = \zeta$ |<img width="1604" alt="f=cos(phi)cos(theta)cos(zeta)" src="https://github.com/user-attachments/assets/d151408b-4107-434d-a6af-36673b11841e"> $f = \cos\varphi \cos\vartheta \cos\zeta$ |
 
+## Electrostatics
 
+### Poisson equation
 
+As I said in the beginning, I managed to only solve electrostatic part of the problem but I generalized both electrostatic and magnetostatic Poisson equations to the hypersphere $\mathbb{S}^3$. For this generalization I used the *language* of the differential forms. For more details on how did I make this generalization have a look at my thesis.
+
+In the hyperspherical coordinates the Laplace operator applied on the function $f(\varphi, \vartheta, \zeta)$ is 
+
+$$ 
+            \Delta f = \frac{1}{\sin^2\varphi} \frac{\partial \sin^2\varphi \frac{\partial f }{\partial \varphi} }{\partial \varphi} + \frac{1}{\sin^2\varphi \sin\vartheta} \frac{\partial \sin\vartheta \frac{f}{\partial \vartheta}}{\partial \vartheta} + \frac{1}{\sin^2\varphi\sin^2\vartheta} \frac{\partial^2 f}{\partial \zeta}        
+$$
+
+The classic Poisson equation for the eletrostatic potential $\phi$ in our flat space $\mathbb{R}^3$ is 
+
+$$
+            \Delta \phi = \frac{\rho}{\epsilon_0},
+$$
+
+where $\rho$ is the charge density and $\epsilon_0$ is the vacuum permittivity constant. Because I was able to generalize the Laplace operator $\Delta$ to the hypersphere $\mathbb{S}^3$ I can write the Poisson equation on the hypersphere as 
+
+$$
+            \Delta_{\mathbb{S}^3} \phi(\varphi, \vartheta, \zeta) = \frac{\rho(\varphi, \vartheta, \zeta)}{\epsilon_0}.
+$$
+ 
+From now on I will omit the index in $Delta_{\mathbb{S}^3}$ and the function variables $\varphi, \vartheta, \zeta$.
+
+With the assumption of separation of variables
+
+$$
+            \Delta \phi(\varphi, \vartheta, \zeta) = \Delta \Phi(\varphi)\Theta(\vartheta)Z(\zeta)
+$$
+
+I was able to find eigenfunctions of the Laplace operator $\Delta$ which I denoted as $H_{nlm}$ - Hyperspherical haromincs - where $n \in \mathbb{N}_0$, $l \leq n; l \in \mathbb{N}_0$ and $-l \leq m \leq l; m \in \mathbb{Z}$. Each eigenfunction has an eigenvalue $\lambda = -(n+2)n$ so we can write
+
+$$
+            \Delta H_{nlm} = -(n+2)n H_{nlm}.
+$$
+
+You may be how does the hyperspherical harmonic function $H_{nlm}$ looks like. In my thesis I derived the formula for $H_{nlm}$ which looks like this
+
+$$
+            H_{nlm} = \sqrt{\frac{(2l+1)(n+1)(l-m)!(n-l)!}{2\pi^2(l+m)!(n+l+1)!}} C_{n}^{1,l}(\cos\varphi) C_{l}^{1/2,m}(\cos\vartheta) e^{im\zeta}
+$$
+
+where $C_n^{\alpha,n} are associated Gegenbauer polynomials which are disccused in the appendix of my thesis. 
 
 ## Junk, don't mind this part :)
 
