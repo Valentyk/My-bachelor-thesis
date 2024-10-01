@@ -250,20 +250,11 @@ def components_simps(n,l,m):                                        # Calculatio
 
 The script then multiplies this component by $\frac{1}{\epsilon_0 (n+2)n} H_{nlm}$ and we have one term of the (now) finite series! After we sum up all of the terms we have the solution which we can now visualize using the stereographic projeciton. In the table belov we can see the charge density functions and the solution. 
 
-| Analytic charge density $\rho$ | Charge density | Electrostatic potential |
+| Analytic function of charge density $\rho$ | Charge density | Electrostatic potential |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 |$\rho_1 = 30 A \sin{\vartheta}\cos{\zeta}-A \left(\varphi-\frac{\pi}{2}\right)^3$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
-|$\rho_2 = A \left(\varphi - \frac{\pi}{2} + \sin2\vartheta\right), \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
-|$\rho_3 = A \left( \cos{\varphi}+2\cos{\vartheta} \right) \sin{2\varphi} \sin{\zeta}, \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/0ac7e553-f5a0-4d64-9ffc-3c181ab76acc">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/bbb2ffc1-21cf-43d0-8745-f2e950eced48">|
-
-
-
-
-
-
-
-
-
+|$\rho_2 = A \left(\varphi - \frac{\pi}{2} + \sin2\vartheta\right), \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/6391e5c8-a1be-4f55-9b83-742bd537ede8">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/b92c5713-3ffe-4450-9fcf-8954854a6053">|
+|$\rho_3 = A \left( \cos{\varphi}+2\cos{\vartheta} \right) \sin{2\varphi} \sin{\zeta}, \qquad [A] = \text{ Cm}^{-3}$|<img width="1604" alt="rho1" src="https://github.com/user-attachments/assets/55d3acec-be13-483a-9a13-5f6c0c8b4930">|<img width="1604" alt="phi1" src="https://github.com/user-attachments/assets/b3735026-b001-448c-9a78-e7f085d10a12">|
 
 
 
